@@ -29,17 +29,17 @@ public class Asn1CodecWrapper {
 
     public String decode(String inputMessage) throws Exception {
 
-        log.info("Decoding message: {}", inputMessage);
+        // log.info("Decoding message: {}", inputMessage);
 
         // Wrap hex in ODE XML:
         String xml = XmlUtils.wrapHex(inputMessage);
 
-        log.info("XML: {}", xml);
+        // log.info("XML: {}", xml);
 
         // Save XML to temp file
         String tempDir = FileUtils.getTempDirectoryPath();
         String tempFileName = "asn1-codec-java-" + UUID.randomUUID().toString() + ".xml";
-        log.info("Temp file name: {}", tempFileName);
+        // log.info("Temp file name: {}", tempFileName);
         Path tempFilePath = Path.of(tempDir, tempFileName);
         File tempFile = new File(tempFilePath.toString());
         FileUtils.writeStringToFile(tempFile, xml, StandardCharsets.UTF_8);
@@ -50,7 +50,7 @@ public class Asn1CodecWrapper {
         pb.directory(new File("/build"));
         Process process = pb.start();
         String result = IOUtils.toString(process.getInputStream(), StandardCharsets.UTF_8);
-        log.info("Result: {}", result);
+        // log.info("Result: {}", result);
 
         // Clean up temp file
         tempFile.delete();
@@ -58,10 +58,11 @@ public class Asn1CodecWrapper {
         // Remove wrapping from result to just return the XER
         try {
             String messageFrame = extractMessageFrame(result);
-            log.info("Message frame: {}", messageFrame);
+            // log.info("Message frame: {}", messageFrame);
             return messageFrame;
         } catch (Exception e) {
-            log.error("Error extracting message frame: {}, returning result which is probably an error message", e);
+            log.error("An error occured.");
+            // log.error("Error extracting message frame: {}, returning result which is probably an error message", e);
             return result;
         }
     }
