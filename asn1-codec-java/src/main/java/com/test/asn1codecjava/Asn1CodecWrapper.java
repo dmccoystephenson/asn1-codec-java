@@ -61,8 +61,7 @@ public class Asn1CodecWrapper {
             // log.info("Message frame: {}", messageFrame);
             return messageFrame;
         } catch (Exception e) {
-            log.error("An error occured.");
-            // log.error("Error extracting message frame: {}, returning result which is probably an error message", e);
+            log.error("Error extracting message frame: {}, returning result which is probably an error message", e);
             return result;
         }
     }

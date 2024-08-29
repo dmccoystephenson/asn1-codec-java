@@ -20,13 +20,13 @@ public class XmlUtils {
         Document doc = DocumentHelper.parseText(xml);
         List<Node> nodes = doc.selectNodes("//MessageFrame");
         if (!nodes.isEmpty()) {
-            // log.info("Found MessageFrame in XML");
+            log.info("Found MessageFrame in XML");
             Node node = nodes.getFirst();
             String nodeXml = prettyPrint(node);
-            // log.info("MessageFrame: {}", nodeXml);
+            log.info("MessageFrame: {}", nodeXml);
             return nodeXml;
         } else {
-            // log.warn("No MessageFrame found in XML, It's probably an error message, returning it unchanged");
+            log.warn("No MessageFrame found in XML, It's probably an error message, returning it unchanged");
             return xml;
         }
     }
